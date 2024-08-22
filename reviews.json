@@ -1,0 +1,124 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Emily Carter",
+        "subject": "Physics",
+        "stars": 5,
+        "review": "Great professor, very clear explanations."
+      },
+      {
+        "professor": "Dr. John Smith",
+        "subject": "Mathematics",
+        "stars": 4,
+        "review": "Good lectures, but assignments are tough."
+      },
+      {
+        "professor": "Dr. Alice Wong",
+        "subject": "Computer Science",
+        "stars": 3,
+        "review": "Sometimes difficult to follow, but overall knowledgeable."
+      },
+      {
+        "professor": "Dr. Michael Thompson",
+        "subject": "Chemistry",
+        "stars": 5,
+        "review": "Engaging and passionate about the subject."
+      },
+      {
+        "professor": "Dr. Sarah Lee",
+        "subject": "Biology",
+        "stars": 2,
+        "review": "The class was hard, and the lectures were boring."
+      },
+      {
+        "professor": "Dr. David Brown",
+        "subject": "History",
+        "stars": 4,
+        "review": "Interesting lectures, but too much reading."
+      },
+      {
+        "professor": "Dr. Jessica Green",
+        "subject": "English Literature",
+        "stars": 5,
+        "review": "Fantastic professor, very approachable."
+      },
+      {
+        "professor": "Dr. Robert Johnson",
+        "subject": "Philosophy",
+        "stars": 3,
+        "review": "Decent professor, but sometimes vague."
+      },
+      {
+        "professor": "Dr. Kimberly Clark",
+        "subject": "Economics",
+        "stars": 4,
+        "review": "Very knowledgeable and well-prepared."
+      },
+      {
+        "professor": "Dr. George Harris",
+        "subject": "Sociology",
+        "stars": 3,
+        "review": "Lectures can be dry, but content is interesting."
+      },
+      {
+        "professor": "Dr. Karen Davis",
+        "subject": "Political Science",
+        "stars": 5,
+        "review": "Engaging and thought-provoking."
+      },
+      {
+        "professor": "Dr. Steven White",
+        "subject": "Anthropology",
+        "stars": 2,
+        "review": "The material is interesting, but the lectures are not."
+      },
+      {
+        "professor": "Dr. Patricia Miller",
+        "subject": "Psychology",
+        "stars": 5,
+        "review": "Very empathetic and understands students' needs."
+      },
+      {
+        "professor": "Dr. James Wilson",
+        "subject": "Art History",
+        "stars": 4,
+        "review": "The professor is passionate but sometimes goes off-topic."
+      },
+      {
+        "professor": "Dr. Barbara Martinez",
+        "subject": "Linguistics",
+        "stars": 3,
+        "review": "The lectures are informative but can be a bit dense."
+      },
+      {
+        "professor": "Dr. Charles Robinson",
+        "subject": "Geology",
+        "stars": 4,
+        "review": "Hands-on labs are great, but the lectures are average."
+      },
+      {
+        "professor": "Dr. Nancy Turner",
+        "subject": "Environmental Science",
+        "stars": 5,
+        "review": "Very inspiring and passionate about the environment."
+      },
+      {
+        "professor": "Dr. Daniel Young",
+        "subject": "Engineering",
+        "stars": 4,
+        "review": "Lectures are clear, but the exams are tough."
+      },
+      {
+        "professor": "Dr. Jennifer Scott",
+        "subject": "Statistics",
+        "stars": 3,
+        "review": "The material is challenging, but the professor is helpful."
+      },
+      {
+        "professor": "Dr. Anthony Lewis",
+        "subject": "Music Theory",
+        "stars": 5,
+        "review": "Fantastic musician and teacher."
+      }
+    ]
+  }  
