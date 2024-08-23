@@ -33,11 +33,11 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
-        <h1 className="text-3xl font-bold capitalize mt-[200px] text-gray-200">
+        <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold capitalize mt-[100px] md:mt-[200px] text-center text-gray-200">
           Welcome to <TipsAndUpdatesIcon className="ml-3 font-medium" />{" "}
           Profitics
         </h1>
-        <h5 className="p-5 mt-3 mx-[400px] font-semibold text-gray-100">
+        <h5 className="p-5 sm:p-5 mt-3 mx-5 sm:mx-10 md:mx-20 lg:mx-[200px] xl:mx-[300px] font-semibold text-gray-100">
           Hey there! I’m your friendly assistant bot. Need a hand finding the
           perfect professor, leaving a review, or navigating our site? I’m here
           to help! Just ask away.
