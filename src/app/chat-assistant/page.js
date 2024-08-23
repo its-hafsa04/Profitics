@@ -78,7 +78,7 @@ export default function ChatAssistant() {
             <div className="flex items-start justify-start">
               <TipsAndUpdatesIcon className="mr-2 text-gray-500" />
               <div className="p-2 rounded-lg bg-gray-200 text-gray-600 animate-pulse">
-                Hi! I'm Profitics a ChatAssistant. How can I help you?
+                Hi! I&apos;m Profitics a ChatAssistant. How can I help you?
               </div>
             </div>
             {messages.map((msg, index) => (
