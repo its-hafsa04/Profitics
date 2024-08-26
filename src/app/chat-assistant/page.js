@@ -11,6 +11,43 @@ export default function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setMessages([...messages, { text: input, type: "user" }]);
+  //   setInput("");
+  //   setLoading(true);
+
+  //   try {
+  //     const response = await fetch("", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ message: input }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const data = await response.json();
+  //     setMessages([
+  //       ...messages,
+  //       { text: input, type: "user" },
+  //       { text: data.reply, type: "bot" },
+  //     ]);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     setMessages([
+  //       ...messages,
+  //       { text: input, type: "user" },
+  //       { text: "Something went wrong, please try again.", type: "bot" },
+  //     ]);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessages([...messages, { text: input, type: "user" }]);
@@ -18,23 +55,37 @@ export default function ChatAssistant() {
     setLoading(true);
 
     try {
-      const response = await fetch("", {
+      console.log('here')
+      const response = await fetch("/api/chat", { // Replace with your actual endpoint
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify([
+          { role: "user", content: input } // Adjust according to the API format
+        ]),
       });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+      let botReply = "";
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        botReply += chunkValue;
+      }
+
       setMessages([
         ...messages,
         { text: input, type: "user" },
-        { text: data.reply, type: "bot" },
+        { text: botReply.trim(), type: "bot" },
       ]);
     } catch (error) {
       console.error("Error:", error);
@@ -47,6 +98,7 @@ export default function ChatAssistant() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex flex-col">

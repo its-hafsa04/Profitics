@@ -15,6 +15,7 @@
     "@google/generative-ai": "^0.17.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
+    "@pinecone-database/pinecone": "^3.0.1",
     "clerk": "^0.8.3",
     "next": "14.2.5",
     "react": "^18",
