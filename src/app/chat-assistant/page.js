@@ -5,6 +5,7 @@ import { useState } from "react";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import PersonIcon from "@mui/icons-material/Person";
 import { UserButton } from "@clerk/nextjs";
+import ReactMarkdown from "react-markdown";
 
 export default function ChatAssistant() {
   const [messages, setMessages] = useState([
@@ -17,7 +18,6 @@ export default function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessages([...messages, { text: input, type: "user" }]);
@@ -25,15 +25,12 @@ export default function ChatAssistant() {
     setLoading(true);
 
     try {
-      console.log('here')
-      const response = await fetch("/api/chat", { // Replace with your actual endpoint
+      const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([
-          { role: "user", content: input } // Adjust according to the API format
-        ]),
+        body: JSON.stringify([{ role: "user", content: input }]),
       });
 
       if (!response.ok) {
@@ -69,7 +66,6 @@ export default function ChatAssistant() {
     }
   };
 
-
   return (
     <div className="min-h-screen flex flex-col">
       <header className="flex justify-between items-center p-5 bg-black shadow-md">
@@ -95,8 +91,8 @@ export default function ChatAssistant() {
           backgroundPosition: "center",
         }}
       >
-        <div className="flex flex-col items-center justify-center p-5 bg-slate-700 shadow-lg rounded-lg overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-          <div className="flex-1 p-4 overflow-y-auto space-y-4 ">
+        <div className="flex flex-col items-center justify-center p-5 bg-slate-700 shadow-lg rounded-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="flex-1 p-4 overflow-y-hidden space-y-4 ">
             <div className="flex items-start justify-start">
               <TipsAndUpdatesIcon className="mr-2 text-gray-500" />
               <div className="p-2 rounded-lg bg-gray-200 text-gray-600 animate-pulse">
@@ -122,7 +118,7 @@ export default function ChatAssistant() {
                       : "bg-gray-100 text-gray-800"
                   }`}
                 >
-                  {msg.text}
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
               </div>
             ))}
