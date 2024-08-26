@@ -7,46 +7,16 @@ import PersonIcon from "@mui/icons-material/Person";
 import { UserButton } from "@clerk/nextjs";
 
 export default function ChatAssistant() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      content: "Hi! I'm Profitics assistant. How can I help you today?",
+    },
+  ]);
+  const [message, setMessage] = useState("");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setMessages([...messages, { text: input, type: "user" }]);
-  //   setInput("");
-  //   setLoading(true);
-
-  //   try {
-  //     const response = await fetch("", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ message: input }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
-
-  //     const data = await response.json();
-  //     setMessages([
-  //       ...messages,
-  //       { text: input, type: "user" },
-  //       { text: data.reply, type: "bot" },
-  //     ]);
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     setMessages([
-  //       ...messages,
-  //       { text: input, type: "user" },
-  //       { text: "Something went wrong, please try again.", type: "bot" },
-  //     ]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
