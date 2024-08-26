@@ -7,45 +7,53 @@ import PersonIcon from "@mui/icons-material/Person";
 import { UserButton } from "@clerk/nextjs";
 
 export default function ChatAssistant() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      content: "Hi! I'm Profitics assistant. How can I help you today?",
+    },
+  ]);
+  const [message, setMessage] = useState("");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessages([...messages, { text: input, type: "user" }]);
-    setInput("");
-    setLoading(true);
+  const sendMessage = async () => {
+    setMessage("");
+    setMessages((messages) => [
+      ...messages,
+      { role: "user", content: message },
+      { role: "assistant", content: "" },
+    ]);
 
-    try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: input }),
+    const response = fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([...messages, { role: "user", content: message }]),
+    }).then(async (res) => {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+
+      let result = "";
+      return reader.read().then(function processText({ done, value }) {
+        if (done) {
+          return result;
+        }
+        const text = decoder.decode(value || new Uint8Array(), {
+          stream: true,
+        });
+        setMessages((messages) => {
+          let lastMessage = messages[messages.length - 1];
+          let otherMessages = messages.slice(0, messages.length - 1);
+          return [
+            ...otherMessages,
+            { ...lastMessage, content: lastMessage.content + text },
+          ];
+        });
+        return reader.read().then(processText);
       });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      setMessages([
-        ...messages,
-        { text: input, type: "user" },
-        { text: data.reply, type: "bot" },
-      ]);
-    } catch (error) {
-      console.error("Error:", error);
-      setMessages([
-        ...messages,
-        { text: input, type: "user" },
-        { text: "Something went wrong, please try again.", type: "bot" },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   return (
@@ -114,7 +122,7 @@ export default function ChatAssistant() {
             )}
           </div>
           <div className="p-4 border-t text-gray-800 border-gray-200 w-full">
-            <form onSubmit={handleSubmit} className="flex items-center">
+            <form onSubmit={sendMessage} className="flex items-center">
               <input
                 type="text"
                 value={input}
